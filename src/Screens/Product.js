@@ -2,7 +2,8 @@ import React,{useReducer,useState,useEffect} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import Navbar from '../components/navbar';
-
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 function reducer(state,action){
     switch(action.type){
       case 'add':
@@ -26,18 +27,47 @@ function Product() {
     const Loading=()=>{
         return(
             <>
-            Loading...
+                <div className='col-md-3'>
+                    <Skeleton height={350}/>
+                </div>
+                <div className='col-md-3'>
+                    <Skeleton height={350}/>
+                </div>
+                <div className='col-md-3'>
+                    <Skeleton height={350}/>
+                </div>
+                <div className='col-md-3'>
+                    <Skeleton height={350}/>
+                </div>
             </>
         )
     }
+
+const filterProduct=(cat)=>{
+    const updatedList =data.filter((x)=>x.category===cat);
+    setFilter(updatedList);
+}
+
+
+
+
+
+
+
     const ShowProducts=()=>{
         return(
             <>
             <div className='buttons d-flex justify-content-center mb-5 pb-5'>
-            <button className='btn btn-outline-dark me-2'>All</button>
-            <button className='btn btn-outline-dark me-2'>Men's Clothing</button>
-            <button className='btn btn-outline-dark me-2'>Women's Clothing</button>
-            <button className='btn btn-outline-dark me-2'>Electronic</button>
+            <button className='btn btn-outline-dark me-2' onClick={()=>
+                setFilter(data)
+            }>All</button>
+            <button className='btn btn-outline-dark me-2'  onClick={()=>filterProduct('xsmall')}>XS</button>
+            <button className='btn btn-outline-dark me-2'onClick={()=>filterProduct('small')}>S</button>
+            <button className='btn btn-outline-dark me-2'onClick={()=>filterProduct('medium')}>M</button>
+            <button className='btn btn-outline-dark me-2'onClick={()=>filterProduct('mediumlarge')}>ML</button>
+            <button className='btn btn-outline-dark me-2'onClick={()=>filterProduct('large')}>L</button>
+            <button className='btn btn-outline-dark me-2'onClick={()=>filterProduct('extralarge')}>XL</button>
+            <button className='btn btn-outline-dark me-2'onClick={()=>filterProduct('doubleextralarge')}>XXL</button>
         </div>
         {filter.map((product)=>{
             return(<>
