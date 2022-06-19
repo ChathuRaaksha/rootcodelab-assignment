@@ -44,7 +44,7 @@ function Product() {
     }
 
 const filterProduct=(cat)=>{
-    const updatedList =data.filter((x)=>x.category===cat);
+    const updatedList =data.filter((x)=>x.details.size===cat);
     setFilter(updatedList);
 }
 
