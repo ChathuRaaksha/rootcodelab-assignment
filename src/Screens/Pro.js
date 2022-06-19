@@ -1,9 +1,13 @@
 import React, { useState, useEffect, useReducer } from "react";
- import Button from 'react-bootstrap/Button';
-// import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import { useDispatch } from "react-redux";
+import { addCart } from "../redux/action";
+import { Link } from 'react-router-dom';
 import { useParams } from 'react-router'
+import navbar from "../components/navbar";
+import Skeleton from "react-loading-skeleton";
 
-function reducer(state, action) {
+/* function reducer(state, action) {
   switch (action.type) {
     case "add":
       return { count: state.count + 1 };
@@ -12,14 +16,17 @@ function reducer(state, action) {
     default:
       return state;
   }
-}
+} */
 
 const Product = () => {
-  const initialState = {
+  /* const initialState = {
     count: 0
-  };
-  const [state, dispach] = useReducer(reducer, initialState);
-
+  }; */
+  //const [state, dispach] = useReducer(reducer, initialState);
+  const dispach=useDispatch();
+  const addProduct = (product) => {
+    dispach(addCart(product));
+}
   const { id } = useParams();
  // const id = 2;
   const [product, setProduct] = useState({});
@@ -44,7 +51,23 @@ const Product = () => {
   }, []);
 
   const Loading = () => {
-    return <>Loading...</>;
+    return (
+    <>
+      <div className="col-md-6">
+        <Skeleton height={400}/>
+      </div>
+      <div className="col-md-6" style={{lineHeight:2}}>
+      <Skeleton height={50} width={300}/>
+      <Skeleton height={75} />
+      <Skeleton height={25} width={150}/>
+      <Skeleton height={50} />
+      <Skeleton height={150} />
+      <Skeleton height={50} width={100}/>
+      <Skeleton height={50} width={100} style={{marginLeft:6}}/>
+    </div>
+    </>
+    );
+
   };
 
   const ShowProduct = () => {
@@ -66,25 +89,31 @@ const Product = () => {
           <p className="lead">{product.details?.size}</p>
           <p className="lead">{product.details?.tag}</p>
           <h3 className="display-6 fw-bold my-4">${product.details?.price}</h3>
-          <button className="btn btn-outline-dark px-4 py-2">
+          <button className="btn btn-outline-dark px-4 py-2 me-2" onClick={()=>addProduct(product)}>
             Add to Cart
           </button>
-          Add Items: {state.count}
-           <Button  variant="light" onClick={() => dispach({ type: "add" })}>
+         <Link to='/cart'><button className="btn btn-dark ms-2 px-3 py-2 me-2">
+            Go to Cart
+          </button></Link> 
+
+       {/*    Add Items: {state.count} */}
+         {/*   <Button  variant="light" onClick={() => dispach({ type: "add" })}>
             +
           </Button>
           <Button variant="light" onClick={() => dispach({ type: "sub" })}>
             -
-          </Button>
+          </Button> */}
         </div>
       </>
     );
   };
 
   return (
-    <div className="container">
-      <div className="row">{loading ? <Loading /> : <ShowProduct />}</div>
-    </div>
+    <>
+    <navbar/>
+    <div className="container py-5">
+      <div className="row py-4">{loading ? <Loading /> : <ShowProduct />}</div>
+    </div></>
   );
 };
 
