@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { NavLink } from 'react-router-dom';
 export default function 
 () {
   return (
@@ -24,6 +24,13 @@ export default function
         <a class="nav-link " href="#">Contact</a>
       </li>
     </ul>
+        <div className='buttons'>
+            <NavLink to='/cart' className='btn btn-outline-dark ms-2'>
+                <i className='fa fa-shopping-cart me-1'>Cart (0)</i>
+            </NavLink>
+        </div>
+
+
   </div>
 </nav>
     </div>

@@ -14,7 +14,7 @@ export default function Home() {
    <span className="primary-text">
         <h5 className='title'>Welcome E-Shopping Cart </h5>
         </span>
-        <Link to='/product'>  <Button variant="light">Login</Button>{' '}</Link>
+        <Link to='/products'>  <Button variant="light">Login</Button>{' '}</Link>
        
     </Col>
     <Col lg ={8} md={6} sm ={12} >

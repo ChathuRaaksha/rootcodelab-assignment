@@ -1,6 +1,7 @@
 import './App.css';
 import Home from './Screens/Home';
-import Product from './Screens/Product';
+import Products from './Screens/Products';
+import Product from './Screens/Pro';
 import {BrowserRouter as Router,Route,Routes } from 'react-router-dom';
 function App() {
   return (
@@ -11,8 +12,8 @@ function App() {
         <Routes >
      
         <Route exact path="/" element={<Home/>}/>
-        <Route exact path="/product" element={<Product/>}/>
-        
+        <Route exact path="/products" element={<Products/>}/>
+        <Route exact path="/product/:id" element={<Product/>}/>
         </Routes >
 
         </Router>
