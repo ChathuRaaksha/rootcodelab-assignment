@@ -155,6 +155,7 @@ const filterProduct=(cat)=>{
             <h1 className='display-6 fw-bolder text-center'>Latest Products</h1>
             <hr/>
              <select>
+             <option>Choose...</option>
       {filter.map(product => (
         <option
           key={product.id}
