@@ -5,18 +5,7 @@ import Navbar from '../components/navbar';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { Link } from 'react-router-dom';
-function reducer(state,action){
-    switch(action.type){
-      case 'add':
-        return { count: state.count+1};
-        case 'sub':
-        return { count: state.count-1};
-      default:
-        return state;  
-    }
-  
-  
-  }
+
   
  
   
@@ -151,10 +140,7 @@ const filterProduct=(cat)=>{
 
 
 
-    const initialState={
-      count:0
-    }
-    const [state,dispach] =useReducer(reducer, initialState);
+  
     return (
   
   <div>
@@ -168,6 +154,16 @@ const filterProduct=(cat)=>{
         <div className='col-12 mb-5'>
             <h1 className='display-6 fw-bolder text-center'>Latest Products</h1>
             <hr/>
+             <select>
+      {filter.map(product => (
+        <option
+          key={product.id}
+          value={product.id}
+        >
+          {product.details.type}
+        </option>
+      ))}
+    </select>
         </div>
     </div>
 
@@ -184,10 +180,6 @@ const filterProduct=(cat)=>{
 
       <div className="App">
         
-           Add Items: {state.count}
-    
-      <Button variant="light" onClick={()=>dispach({type:'add'})}>+</Button>
-      <Button variant="light" onClick={()=>dispach({type:'sub'})}>-</Button>
       </div></div>
     );
   }
