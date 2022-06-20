@@ -156,6 +156,7 @@ const filterProduct=(cat)=>{
             <hr/>
              <select>
              <option>Choose...</option>
+             <option>All</option>
       {filter.map(product => (
         <option
           key={product.id}
